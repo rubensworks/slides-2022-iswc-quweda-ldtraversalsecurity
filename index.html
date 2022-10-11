@@ -76,19 +76,7 @@
     
     <section id="usecase-pods" class="slide" inlist="" rel="schema:hasPart" resource="#usecase-pods">
       <h2 property="schema:name">Personal online data vaults (a.k.a. pods)</h2>
-      <center><img src="img/use-case.svg" alt="Solid pods" height="450px" /></center>
-    </section>
-	
-    <section id="some-slide" class="slide" inlist="" rel="schema:hasPart" resource="#some-slide">
-      <h2 property="schema:name">TODO: A regular slide</h2>
-      <ul>
-          <li>
-          	  <h3>A</h3>
-			  <span class="indent">TODO: Description</span>
-          </li>
-          <li>B</li>
-          <li>C</li>
-      </ul>
+      <center><img src="img/use-case.svg" alt="Use case" height="450px" /></center>
     </section>
     
     <section id="index-ltqp" class="slide index" inlist="" rel="schema:hasPart" resource="#index-ltqp">
@@ -99,11 +87,151 @@
       </ul>
     </section>
     
+    <section id="query-needs" class="slide" inlist="" rel="schema:hasPart" resource="#query-needs">
+      <h2 property="schema:name">Follow links during query execution</h2>
+      <ul>
+          <li>
+          	  <h3>Decentralization &rarr; many of documents spread over the Web</h3>
+			  <span class="indent">Not possible to centralize due to practical and legal reasons.</span>
+          </li>
+          <li>
+          	  <h3>Linked Data documents contain links to other documents</h3>
+			  <span class="indent">New documents can be found via the <em>follow-your-nose</em> principle.</span>
+          </li>
+          <li>
+          	  <h3>Need for a non-traditional query execution approach</h3>
+			  <span class="indent">For discovering data and documents <em>during</em> query execution.</span>
+          </li>
+      </ul>
+      <h3>&rarr; Link Traversal Query Processing</h3>
+      <p style="font-size: 0.75em">Hartig, O., Bizer, C., Freytag, J.-C.: Executing SPARQL Queries over the Web of Linked Data. Proceedings of the 8th International Semantic Web Conference. pp. 293–309 (2009).</p>
+    </section>
+    
+    <section id="ltqp" class="slide" inlist="" rel="schema:hasPart" resource="#ltqp">
+      <h2 property="schema:name">Link Traversal Query Processing (LTQP)</h2>
+      <p style="font-size: 0.75em; font-style: italic">Hartig, O., Bizer, C., Freytag, J.-C.: Executing SPARQL Queries over the Web of Linked Data. Proceedings of the 8th International Semantic Web Conference. pp. 293–309 (2009).</p>
+      <center><img src="img/ltqp-engine.svg" alt="LTQP engine" height="230px" /></center>
+      <ul>
+          <li>
+          	  <h3>Incorporates live data discovery into query execution</h3>
+			  <span class="indent">By following links between documents.</span>
+          </li>
+      </ul>
+    </section>
+    
     <section id="index-vulnerabilities" class="slide index" inlist="" rel="schema:hasPart" resource="#index-vulnerabilities">
       <ul>
         <li><a href="#index-usecase">Use Case</a></li>
         <li><a href="#index-ltqp">Link Traversal Query Processing</a></li>
 		<li class="current"><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
+      </ul>
+    </section>
+    
+    <section id="ltqp-vulnerabilities" class="slide" inlist="" rel="schema:hasPart" resource="#ltqp-vulnerabilities">
+      <h2 property="schema:name">The Web is an open and potentially unsafe environment</h2>
+      <ul>
+          <li>
+          	  <h3>LTQP research so far assumes non-malicious publishers</h3>
+			  <span class="indent">In reality, documents and data can lead to exploits in the query engine</span>
+          </li>
+          <li>
+          	  <h3>Related to vulnerabilities in Web browsers and crawlers</h3>
+			  <ul class="indent">
+			      <li>Crawler traps</li>
+                  <li>Data theft</li>
+                  <li>Cross domain compromise</li>
+                  <li>Cross-domain request forgery</li>
+                  <li>...</li>
+			  </ul>
+          </li>
+      </ul>
+    </section>
+    
+    <section id="vulnerabilities-overview" class="slide" inlist="" rel="schema:hasPart" resource="#vulnerabilities-overview">
+      <h2 property="schema:name">Analysis of vulnerabilities</h2>
+      <ol style="font-size: 0.95em">
+          <li>Unauthorized Statements</li>
+          <li>Intermediate Result and Query Leakage</li>
+          <li>Session Hijacking</li>
+          <li>Cross-site Data Injection</li>
+          <li>Arbitrary Code Execution</li>
+          <li>Link Traversal Trap</li>
+          <li>System hogging</li>
+          <li>Document Corruption</li>
+          <li>Cross-query Execution Interaction</li>
+          <li>Document Priority Modification</li>
+      </ol>
+    </section>
+    
+    <section id="vulnerabilities-overview-selected" class="slide" inlist="" rel="schema:hasPart" resource="#vulnerabilities-overview-selected">
+      <h2 property="schema:name">Analysis of vulnerabilities</h2>
+      <ol style="font-size: 0.95em">
+          <li><strong>Unauthorized Statements</strong></li>
+          <li>Intermediate Result and Query Leakage</li>
+          <li>Session Hijacking</li>
+          <li>Cross-site Data Injection</li>
+          <li>Arbitrary Code Execution</li>
+          <li><strong>Link Traversal Trap</strong></li>
+          <li><strong>System hogging</strong></li>
+          <li>Document Corruption</li>
+          <li>Cross-query Execution Interaction</li>
+          <li>Document Priority Modification</li>
+      </ol>
+    </section>
+    
+    <section id="vulnerability-unauth-statements" class="slide" inlist="" rel="schema:hasPart" resource="#vulnerability-unauth-statements">
+      <h2 property="schema:name">1. Unauthoritative Statements</h2>
+      <ul>
+          <li>
+          	  <h3>Open world assumption</h3>
+			  <span class="indent">Anyone can say anything about anything, including <em>incorrect</em> things</span>
+          </li>
+          <li>
+          	  <h3>Carol can express false information in her profile</h3>
+			  <span class="indent"><code>:Bob :name "Dave"</code></span><br />
+              <span class="indent">Upon discovery, query engine finds two names for Bob: "Bob" and "Dave".</span>
+          </li>
+          <li>
+          	  <h3>Query engine can not distinguish between results</h3>
+			  <span class="indent">Need for preferences or trust policies</span><br />
+              <span style="font-size: 0.75em; font-style: italic">Bogaerts, B., Ketsman, B., Zeboudj, Y., Aamer, H., Taelman, R., & Verborgh, R. (2021, September). Link Traversal with Distributed Subweb Specifications. In International Joint Conference on Rules and Reasoning (pp. 62-79). Springer, Cham.</span>
+          </li>
+      </ul>
+    </section>
+    
+    <section id="vulnerability-trap" class="slide" inlist="" rel="schema:hasPart" resource="#vulnerability-trap">
+      <h2 property="schema:name">6. Link Traversal Trap</h2>
+      <ul>
+          <li>
+          	  <h3>Link structures cause infinite traversal paths</h3>
+			  <span class="indent">Query engine might get stuck in loop</span>
+          </li>
+          <li>
+          	  <h3>Cycles exist in different forms</h3>
+              <ul class="indent">
+                  <li>Application level: documents link to each other</li>
+                  <li>Protocol level: HTTP redirect chains</li>
+                  <li>Virtual: long/infinite chains via dynamic pages</li>
+              </ul>
+          </li>
+      </ul>
+    </section>
+    
+    <section id="vulnerability-hogging" class="slide" inlist="" rel="schema:hasPart" resource="#vulnerability-hogging">
+      <h2 property="schema:name">7. System Hogging</h2>
+      <ul>
+          <li>
+          	  <h3>Attacks on CPU and memory usage</h3>
+			  <span class="indent">Malicious code execution or exploiting software flaws</span>
+          </li>
+          <li>
+          	  <h3>Infinitely long RDF documents</h3>
+              <span class="indent">Possible in serializations such as Turtle and N-Triples</span>
+          </li>
+          <li>
+          	  <h3>Can be mitigated by streaming parsers</h3>
+              <span class="indent">Don't keep full document in memory</span>
+          </li>
       </ul>
     </section>
     
