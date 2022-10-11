@@ -22,10 +22,10 @@
   <body class="shower list" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# foaf: http://xmlns.com/foaf/0.1/ owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# org: http://www.w3.org/ns/org# schema: http://schema.org/ cite: http://purl.org/spar/cito/" typeof="schema:PresentationDigitalDocument">
     <header class="caption">
       <div class="title">
-        <h1 property="schema:name">Security Vulnerabilities within Link Traversal-Based Query Processing</h1>
+        <h1 property="schema:name">Security Vulnerabilities within Link Traversal Query Processing</h1>
       </div>
       <div class="captiondata">
-        <p class="author" rel="schema:author"><a href="https://www.rubensworks.net/#me">Ruben Taelman</a></p>
+        <p class="author" rel="schema:author"><a href="https://www.rubensworks.net/#me">Ruben Taelman</a>, <a href="https://ruben.verborgh.org/">Ruben Verborgh</a></p>
         <p class="venue">
           <a href="https://sites.google.com/view/quweda2022">QuWeDa 2022</a>, <span rel="schema:datePublished">23 October 2022</span></a>
         </p>
@@ -33,31 +33,44 @@
     </header>
 
     <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
-      <h2 property="schema:name">Security Vulnerabilities within Link Traversal-Based Query Processing</h2>
+      <h2 property="schema:name">Security Vulnerabilities within Link Traversal Query Processing</h2>
       <ul class="author inline">
           <li class="current"><a href="https://www.rubensworks.net/">Ruben Taelman</a></li>
+          <li class="current"><a href="https://ruben.verborgh.org/">Ruben Verborgh</a></li>
       </ul>
       <p class="affiliation"><a href="http://idlab.technology/">Ghent University – imec – IDLab, Belgium</a></p>
     </section>
 
-    <section id="start" class="slide" style="background-image: url('img/TODO.jpg')" inlist="" rel="schema:hasPart" resource="#start">
-        <h2 property="schema:name" class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">INTRO</h2>
-        <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
-            <li>TODO</li>
+    <section id="start" class="slide" inlist="" rel="schema:hasPart" resource="#start">
+        <h2 property="schema:name" class="big" style="margin-top: 20px">Decentralization efforts such as Solid leads to a <em>massive</em> distribution of data</h2>
+        <center><img src="img/solid-pods.svg" alt="Solid pods" height="270px" /></center>
+        <h3 class="next" style="margin-top: -20px; font-size: 1.2em">To find data, links must be followed across interlinked documents</h3>
+    </section>
+    
+    <section id="malicious-data" class="slide" inlist="" rel="schema:hasPart" resource="#malicious-data">
+        <h2 property="schema:name">Documents are spread over the Web</h2>
+        <p>An environment that is</p>
+        <ul>
+            <li>uncontrolled,</li>
+            <li>unpredictable,</li>
+            <li>and potentially unsafe.</li>
         </ul>
+        <center class="next"><h3 style="font-size: 1.5em">Analysis of security vulnerabilities<br \>when querying over decentralized data</h3></center>
     </section>
 	
     <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
       <ul>
-        <li><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
+        <li><a href="#index-usecase">Use Case</a></li>
+        <li><a href="#index-ltqp">Link Traversal Query Processing</a></li>
+		<li><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
       </ul>
     </section>
     
-    <section id="index-a" class="slide index" inlist="" rel="schema:hasPart" resource="#index-a">
+    <section id="index-usecase" class="slide index" inlist="" rel="schema:hasPart" resource="#index-usecase">
       <ul>
-        <li class="current"><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
+        <li class="current"><a href="#index-usecase">Use Case</a></li>
+        <li><a href="#index-ltqp">Link Traversal Query Processing</a></li>
+		<li><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
       </ul>
     </section>
 	
@@ -70,6 +83,30 @@
           </li>
           <li>B</li>
           <li>C</li>
+      </ul>
+    </section>
+    
+    <section id="index-ltqp" class="slide index" inlist="" rel="schema:hasPart" resource="#index-ltqp">
+      <ul>
+        <li><a href="#index-usecase">Use Case</a></li>
+        <li class="current"><a href="#index-ltqp">Link Traversal Query Processing</a></li>
+		<li><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-vulnerabilities" class="slide index" inlist="" rel="schema:hasPart" resource="#index-vulnerabilities">
+      <ul>
+        <li><a href="#index-usecase">Use Case</a></li>
+        <li><a href="#index-ltqp">Link Traversal Query Processing</a></li>
+		<li class="current"><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
+      </ul>
+    </section>
+    
+    <section id="index-final" class="slide index" inlist="" rel="schema:hasPart" resource="#index-final">
+      <ul>
+        <li><a href="#index-usecase">Use Case</a></li>
+        <li><a href="#index-ltqp">Link Traversal Query Processing</a></li>
+		<li><a href="#index-vulnerabilities">Security Vulnerabilities</a></li>
       </ul>
     </section>
 	
